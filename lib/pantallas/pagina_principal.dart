@@ -26,7 +26,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
             ),
             // Allows the user to reveal the app bar if they begin scrolling
             // back up the list of items.
-            floating: true,
+            floating: false,
             // Display a placeholder widget to visualize the shrinking size.
             flexibleSpace: Container(
               color: Colors.indigo,
