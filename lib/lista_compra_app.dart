@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_final/pantallas/pagina_principal.dart';
+import 'package:provider/provider.dart';
+import 'pantallas/pantallas.dart';
+import 'modelo/modelo.dart';
 
 class ListaCompraApp extends StatelessWidget {
   const ListaCompraApp({Key? key}) : super(key: key);
@@ -11,7 +13,12 @@ class ListaCompraApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: const PaginaPrincipal(),
+      home: MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => ListaCompra(),),
+          ],
+        child: PaginaPrincipal(),
+      ),
     );
   }
 }
