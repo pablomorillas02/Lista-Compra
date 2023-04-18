@@ -7,6 +7,7 @@ class ListaCompraAnadirProducto extends StatefulWidget {
   final Function(Producto) editarProducto;
   final Producto? productoOriginal;
   final bool actualizando;
+
   const ListaCompraAnadirProducto({
     Key? key,
     required this.crearProducto,
@@ -59,6 +60,13 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
   @override
   void initState() {
     super.initState();
+
+    final productoOriginal = widget.productoOriginal;
+    if (productoOriginal != null) {
+      _controladorNombre.text = productoOriginal.nombre;
+      _nombre = productoOriginal.nombre;
+    }
+
     _controladorNombre.addListener(() {
       setState(() { _nombre = _controladorNombre.text; });
     });

@@ -2,7 +2,7 @@ class Producto {
   final String id;
   final String nombre;
   final int cantidad;
-  final bool completado;
+  late final bool completado;
 
   Producto({
     required this.id,
@@ -18,5 +18,10 @@ class Producto {
       cantidad: cantidad ?? this.cantidad,
       completado: completado ?? this.completado,
     );
+  }
+
+  @override
+  String toString() {
+    return '${id};${nombre};${cantidad};${completado}';
   }
 }

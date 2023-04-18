@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:proyecto_final/modelo/lista_compra.dart';
+import 'package:proyecto_final/modelo/producto.dart';
 import 'package:proyecto_final/pantallas/pagina_principal_llena.dart';
 import 'package:proyecto_final/pantallas/pagina_principal_vacia.dart';
 
@@ -10,13 +11,15 @@ class PaginaPrincipal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final manager = Provider.of<ListaCompra>(context, listen: false);
+    manager.obtenerProductoFichero();
+
     return Scaffold(
 
       body:construirPantallaListaCompra(),
       floatingActionButton: FloatingActionButton(
         elevation: 6,
         onPressed: () {
-          final manager = Provider.of<ListaCompra>(context, listen: false);
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -30,7 +33,7 @@ class PaginaPrincipal extends StatelessWidget {
                 );
               }, ),
           ); },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Colors.white,),
       ),
     );
   }
@@ -54,7 +57,7 @@ class PaginaPrincipal extends StatelessWidget {
                   ),
                   floating: false,
                   flexibleSpace: Container(
-                    color: Colors.indigo,
+                    color: Colors.grey,
                   ),
                   expandedHeight: 100,
                 ),
