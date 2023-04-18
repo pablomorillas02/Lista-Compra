@@ -35,7 +35,7 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                 key: Key(item.id),
                 direction: DismissDirection.horizontal,
                 confirmDismiss: (direction) async {
-                  if (direction == DismissDirection.startToEnd) {
+                  if (direction == DismissDirection.endToStart) {
                     listaCompra.borraProducto(index);
                     ScaffoldMessenger.of(context)
                         .showSnackBar(SnackBar(content: Text('${item.nombre} borrado')));
@@ -58,30 +58,29 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                   return false;
                 },
                 background: Container(
-                  color: Colors.red,
-                  alignment: Alignment.centerLeft,
+                  color: Colors.blue,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(Icons.delete_forever, color: Colors.white),
+                        Icon(Icons.edit, color: Colors.white),
                         SizedBox(width: 8.0),
-                        Text('Borrar', style: TextStyle(color: Colors.white, fontSize: 16.0)),
+                        Text('Editar', style: TextStyle(color: Colors.white, fontSize: 16.0)),
                       ],
                     ),
                   ),
                 ),
                 secondaryBackground: Container(
-                  color: Colors.blue,
+                  color: Colors.red,
                   child: Padding(
                     padding: const EdgeInsets.only(right: 16.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Icon(Icons.edit, color: Colors.white),
+                        Icon(Icons.delete_forever, color: Colors.white),
                         SizedBox(width: 8.0),
-                        Text('Editar', style: TextStyle(color: Colors.white, fontSize: 16.0)),
+                        Text('Borrar', style: TextStyle(color: Colors.white, fontSize: 16.0)),
                       ],
                     ),
                   ),
