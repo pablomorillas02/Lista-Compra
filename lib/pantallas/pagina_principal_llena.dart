@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final/pantallas/linea_producto.dart';
 import '../modelo/modelo.dart';
 import 'lista_compra_anadir_producto.dart';
 
@@ -27,6 +28,17 @@ class ListaCompraPantallaLlena extends StatelessWidget {
           ),
           expandedHeight: 100,
         ),
+/*
+        SliverToBoxAdapter(
+          child: Row(
+            children: [
+              Text(
+                "Cosas a comprar",
+              )
+            ],
+          ),
+        ),
+*/
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
@@ -86,7 +98,15 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                   ),
                 ),
                 child: ListTile(
-                  title: Text(item.nombre),
+                  title: LineaProducto(
+                    producto: item,
+                    completar: (valor){
+                      if(valor != null){
+                        print("hola");
+                        listaCompra.marcaCompletado(index, valor);
+                      }
+                    },
+                  ),
                 ),
               );
             },
