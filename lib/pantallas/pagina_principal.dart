@@ -45,27 +45,7 @@ class PaginaPrincipal extends StatelessWidget {
           if(manager.productos.isNotEmpty){
             return ListaCompraPantallaLlena(listaCompra: manager);
           }else{
-            return CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  title: const Text(
-                    'Lista de la compra',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25.0,
-                    ),
-                  ),
-                  floating: false,
-                  flexibleSpace: Container(
-                    color: Colors.grey,
-                  ),
-                  expandedHeight: 100,
-                ),
-                const SliverToBoxAdapter(
-                    child: pantalla_vacia()
-                ),
-              ],
-            );
+            return pantalla_vacia();
           }
         }
     );
