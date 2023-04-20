@@ -100,7 +100,6 @@ class ListaCompra extends ChangeNotifier {
 
   void borraProductoCompletado(int indice) {
     Producto producto = _productosCompletados[indice];
-    //borrarLinea(producto);
     _productosCompletados.removeAt(indice);
     notifyListeners();
   }
@@ -124,15 +123,14 @@ class ListaCompra extends ChangeNotifier {
       producto = _productos[indice];
       _productosCompletados.add(producto.copiaSiNulo(completado: completado));
       _productos.remove(producto);
-      //actualizaLinea(producto, _productosCompletados[indice]);
+      actualizaLinea(producto, _productosCompletados.last);
     }else{
       producto = _productosCompletados[indice];
       _productos.add(producto.copiaSiNulo(completado: completado));
       _productosCompletados.remove(producto);
-      //actualizaLinea(producto, _productos[indice]);
+      actualizaLinea(producto, _productos.last);
     }
-
-    actualizaLinea(producto, _productos[indice]);
+    
     notifyListeners();
   }
 }
