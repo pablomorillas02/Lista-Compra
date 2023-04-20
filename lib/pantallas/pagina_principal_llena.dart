@@ -29,15 +29,6 @@ class ListaCompraPantallaLlena extends StatelessWidget {
           ),
           expandedHeight: 100,
         ),
-        SliverToBoxAdapter(
-          child: Row(
-            children: [
-              Text(
-                "Cosas a comprar",
-              )
-            ],
-          ),
-        ),
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
@@ -109,15 +100,6 @@ class ListaCompraPantallaLlena extends StatelessWidget {
               );
             },
             childCount: productos.length,
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: Row(
-            children: [
-              Text(
-                "Cosas en la cesta",
-              )
-            ],
           ),
         ),
         SliverList(

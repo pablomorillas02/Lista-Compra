@@ -118,22 +118,21 @@ class ListaCompra extends ChangeNotifier {
   }
 
   void marcaCompletado(int indice, bool completado) {
-    // Declarar producto tambien como null y hacer un if para que coja uno u otro
-    final producto = _productos[indice];
-    Producto? productoComp = null;
-    //_productos[indice] = producto.copiaSiNulo(completado: completado);
+    Producto? producto = null;
 
-
-    if(_productos.contains(producto)){
+    if(completado){
+      producto = _productos[indice];
       _productosCompletados.add(producto.copiaSiNulo(completado: completado));
       _productos.remove(producto);
-      productoComp = _productosCompletados[indice];
+      //actualizaLinea(producto, _productosCompletados[indice]);
     }else{
+      producto = _productosCompletados[indice];
       _productos.add(producto.copiaSiNulo(completado: completado));
-      _productosCompletados.remove(productoComp);
+      _productosCompletados.remove(producto);
+      //actualizaLinea(producto, _productos[indice]);
     }
 
-    //actualizaLinea(producto, _productos[indice]);
+    actualizaLinea(producto, _productos[indice]);
     notifyListeners();
   }
 }
