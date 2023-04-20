@@ -11,6 +11,7 @@ class ListaCompraPantallaLlena extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productos = listaCompra.productos;
+    final productosCompletados = listaCompra.productosCompletados;
 
     return CustomScrollView(
       slivers: [
@@ -28,7 +29,6 @@ class ListaCompraPantallaLlena extends StatelessWidget {
           ),
           expandedHeight: 100,
         ),
-/*
         SliverToBoxAdapter(
           child: Row(
             children: [
@@ -38,7 +38,6 @@ class ListaCompraPantallaLlena extends StatelessWidget {
             ],
           ),
         ),
-*/
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
@@ -102,7 +101,6 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                     producto: item,
                     completar: (valor){
                       if(valor != null){
-                        print("hola");
                         listaCompra.marcaCompletado(index, valor);
                       }
                     },
@@ -112,7 +110,89 @@ class ListaCompraPantallaLlena extends StatelessWidget {
             },
             childCount: productos.length,
           ),
-        )
+        ),
+        SliverToBoxAdapter(
+          child: Row(
+            children: [
+              Text(
+                "Cosas en la cesta",
+              )
+            ],
+          ),
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+                (context, index) {
+              final itemCompletado = productosCompletados[index];
+              return Dismissible(
+                key: Key(itemCompletado.id),
+                direction: DismissDirection.horizontal,
+                confirmDismiss: (direction) async {
+                  if (direction == DismissDirection.endToStart) {
+                    listaCompra.borraProductoCompletado(index);
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text('${itemCompletado.nombre} borrado')));
+                    return true;
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ListaCompraAnadirProducto(
+                          productoOriginal: itemCompletado,
+                          editarProducto: (itemCompletado) {
+                            listaCompra.actualizaProducto(itemCompletado, index);
+                            Navigator.pop(context);
+                          },
+                          crearProducto: (itemCompletado) {},
+                        ),
+                      ),
+                    );
+                  }
+                  return false;
+                },
+                background: Container(
+                  color: Colors.blue,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.edit, color: Colors.white),
+                        SizedBox(width: 8.0),
+                        Text('Editar', style: TextStyle(color: Colors.white, fontSize: 16.0)),
+                      ],
+                    ),
+                  ),
+                ),
+                secondaryBackground: Container(
+                  color: Colors.red,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(Icons.delete_forever, color: Colors.white),
+                        SizedBox(width: 8.0),
+                        Text('Borrar', style: TextStyle(color: Colors.white, fontSize: 16.0)),
+                      ],
+                    ),
+                  ),
+                ),
+                child: ListTile(
+                  title: LineaProducto(
+                    producto: itemCompletado,
+                    completar: (valor){
+                      if(valor != null){
+                        listaCompra.marcaCompletado(index, valor);
+                      }
+                    },
+                  ),
+                ),
+              );
+            },
+            childCount: productosCompletados.length,
+          ),
+        ),
       ],
     );
   }

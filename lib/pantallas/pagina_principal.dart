@@ -42,7 +42,7 @@ class PaginaPrincipal extends StatelessWidget {
   Widget construirPantallaListaCompra(){
     return Consumer<ListaCompra>(
         builder: (context, manager, child){
-          if(manager.productos.isNotEmpty){
+          if(manager.productos.isNotEmpty || manager.productosCompletados.isNotEmpty){
             return ListaCompraPantallaLlena(listaCompra: manager);
           }else{
             return pantalla_vacia();
