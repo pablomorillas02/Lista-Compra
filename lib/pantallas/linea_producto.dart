@@ -15,7 +15,6 @@ class LineaProducto extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
       var titleLarge = Theme.of(context).textTheme.titleLarge;
-      var decortitleLarge = titleLarge?.copyWith(decoration: textDecoration);
 
       return Container(
           height: 60.0,
@@ -34,7 +33,6 @@ class LineaProducto extends StatelessWidget {
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                   const SizedBox(height: 4.0),
-                  //construirImportancia(context, producto),
                   ],
                 ),
               ],
@@ -55,12 +53,4 @@ class LineaProducto extends StatelessWidget {
       );
 
   }
-  Widget construirImportancia(BuildContext context, Producto producto) {
-    var temaTexto = Theme.of(context).textTheme.bodyMedium;
-
-    return Text(
-      "Alto",
-    );
-  }
-
 }

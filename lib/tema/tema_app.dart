@@ -22,6 +22,11 @@ class AppTema {
       decoration: TextDecoration.underline,
       color: const Color(0xFF212738),
     ),
+    displayLarge: GoogleFonts.poppins(
+      fontSize: 28.0,
+      fontWeight: FontWeight.normal,
+      color: const Color(0xFF212738),
+    ),
     displayMedium: GoogleFonts.poppins(
       // TextInput
       fontSize: 16.0,
@@ -54,6 +59,11 @@ class AppTema {
       fontSize: 14.0,
       fontWeight: FontWeight.normal,
       decoration: TextDecoration.underline,
+      color: const Color(0xFFEDF2EF),
+    ),
+    displayLarge: GoogleFonts.poppins(
+      fontSize: 24.0,
+      fontWeight: FontWeight.normal,
       color: const Color(0xFFEDF2EF),
     ),
     displayMedium: GoogleFonts.poppins(
@@ -94,7 +104,17 @@ class AppTema {
               borderSide: BorderSide(
                 color: const Color(0xFF212738),
               ),
-            )));
+            )
+        ),
+        checkboxTheme: CheckboxThemeData(
+          fillColor: MaterialStateProperty.all<Color>(Color(0xFF212738)),
+          checkColor: MaterialStateProperty.all<Color>(Color(0xFFEDF2EF)),
+          shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(1.0),
+          side: BorderSide(color: Color(0xFF212738)),
+          )
+        ),
+    );
   }
 
   static ThemeData oscuro() {
@@ -121,6 +141,16 @@ class AppTema {
               borderSide: BorderSide(
                 color: const Color(0xFFEDF2EF),
               ),
-            )));
+            )
+        ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: MaterialStateProperty.all<Color>(Color(0xFFEDF2EF)),
+        checkColor: MaterialStateProperty.all<Color>(Color(0xFF212738)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(1.0),
+          side: BorderSide(color: Color(0xFFEDF2EF)),
+        ),
+      ),
+    );
   }
 }

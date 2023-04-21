@@ -2,7 +2,7 @@ class Producto {
   final String id;
   final String nombre;
   final int cantidad;
-  late final bool completado;
+  late bool completado;
 
   Producto({
     required this.id,

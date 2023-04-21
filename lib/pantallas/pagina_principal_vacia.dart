@@ -7,16 +7,13 @@ class pantalla_vacia extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          title: const Text(
+          title: Text(
             'Lista de la compra',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 25.0,
-            ),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           floating: false,
           flexibleSpace: Container(
-            color: Colors.grey,
+            color: Theme.of(context).appBarTheme.backgroundColor,
           ),
           expandedHeight: 100,
         ),
@@ -24,12 +21,12 @@ class pantalla_vacia extends StatelessWidget {
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
+                children: <Widget>[
                   Padding(
-                      padding: EdgeInsets.all(50.0),
+                      padding: const EdgeInsets.all(50.0),
                       child: Text(
                         'Añade productos pulsando el botón',
-                        style: TextStyle(fontSize: 20.0),
+                        style: Theme.of(context).textTheme.displayLarge,
                         textAlign: TextAlign.center,
                       ),
                   )
