@@ -33,6 +33,13 @@ class AppTema {
       fontWeight: FontWeight.normal,
       color: const Color(0xFF212738),
     ),
+    labelMedium: GoogleFonts.poppins(
+      // TextInput
+      fontSize: 16.0,
+      fontWeight: FontWeight.normal,
+      color: const Color(0xFF212738),
+      decoration: TextDecoration.lineThrough,
+    ),
     displaySmall: GoogleFonts.poppins(
       // P.e ...
       fontSize: 12.0,
@@ -71,6 +78,13 @@ class AppTema {
       fontSize: 16.0,
       fontWeight: FontWeight.normal,
       color: const Color(0xFFEDF2EF),
+    ),
+    labelMedium: GoogleFonts.poppins(
+      // TextInput
+      fontSize: 16.0,
+      fontWeight: FontWeight.normal,
+      color: const Color(0xFFEDF2EF),
+      decoration: TextDecoration.lineThrough,
     ),
     displaySmall: GoogleFonts.poppins(
       // P.e ...
