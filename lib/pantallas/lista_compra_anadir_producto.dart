@@ -13,24 +13,29 @@ class ListaCompraAnadirProducto extends StatefulWidget {
     required this.crearProducto,
     required this.editarProducto,
     this.productoOriginal,
-  }) : actualizando = (productoOriginal != null),
+  })  : actualizando = (productoOriginal != null),
         super(key: key);
   @override
-  _ListaCompraAnadirProductoState createState() => _ListaCompraAnadirProductoState();
+  _ListaCompraAnadirProductoState createState() =>
+      _ListaCompraAnadirProductoState();
 }
 
 class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
-
   final _controladorNombre = TextEditingController();
   String _nombre = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
+        iconTheme: Theme.of(context).iconTheme,
         actions: [
           IconButton(
-            icon: const Icon(Icons.check),
+            icon: Icon(
+              Icons.check,
+              color: Theme.of(context).iconTheme.color,
+            ),
             onPressed: () {
               final producto = Producto(
                 id: widget.productoOriginal?.id ?? const Uuid().v1(),
@@ -42,17 +47,23 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
                 widget.editarProducto(producto);
               } else {
                 widget.crearProducto(producto);
-              } },
-          ), ],
+              }
+            },
+          ),
+        ],
         elevation: 0.0,
-        title: const Text( 'Añadir/editar', ),
+        title: Text(
+          'Añadir/editar',
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
       ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: <Widget>[
             construyeCampoNombre(),
-          ], ),
+          ],
+        ),
       ),
     );
   }
@@ -68,7 +79,9 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
     }
 
     _controladorNombre.addListener(() {
-      setState(() { _nombre = _controladorNombre.text; });
+      setState(() {
+        _nombre = _controladorNombre.text;
+      });
     });
   }
 
@@ -88,11 +101,13 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
         ),
         TextField(
           controller: _controladorNombre,
-          decoration: const InputDecoration(
+          style: Theme.of(context).textTheme.displayMedium,
+          decoration: InputDecoration(
             hintText: 'P.e.: Pan, 1kg de sal, etc.',
+            suffixStyle: Theme.of(context).textTheme.displaySmall,
           ),
-        ), ],
+        ),
+      ],
     );
   }
-
 }

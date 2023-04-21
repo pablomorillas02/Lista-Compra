@@ -8,15 +8,16 @@ import 'package:proyecto_final/pantallas/pagina_principal_vacia.dart';
 import 'lista_compra_anadir_producto.dart';
 
 class PaginaPrincipal extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final manager = Provider.of<ListaCompra>(context, listen: false);
     manager.obtenerProductoFichero();
 
     return Scaffold(
-
-      body:construirPantallaListaCompra(),
+      backgroundColor: Theme
+          .of(context)
+          .backgroundColor,
+      body: construirPantallaListaCompra(),
       floatingActionButton: FloatingActionButton(
         elevation: 6,
         onPressed: () {
@@ -25,30 +26,34 @@ class PaginaPrincipal extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) {
                 return ListaCompraAnadirProducto(
-                  crearProducto:(producto){
+                  crearProducto: (producto) {
                     manager.anadeProducto(producto);
                     Navigator.pop(context);
                   },
-                  editarProducto: (producto) { },
+                  editarProducto: (producto) {},
                 );
-              }, ),
-          ); },
-        child: const Icon(Icons.add, color: Colors.white,),
+              },
+            ),
+          );
+        },
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }
 
-
-  Widget construirPantallaListaCompra(){
+  Widget construirPantallaListaCompra() {
     return Consumer<ListaCompra>(
-        builder: (context, manager, child){
-          if(manager.productos.isNotEmpty || manager.productosCompletados.isNotEmpty){
+        builder: (context, manager, child) {
+          if (manager.productos.isNotEmpty ||
+              manager.productosCompletados.isNotEmpty) {
             return ListaCompraPantallaLlena(listaCompra: manager);
-          }else{
+          } else {
             return pantalla_vacia();
           }
         }
     );
   }
-
 }

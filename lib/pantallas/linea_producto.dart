@@ -31,10 +31,10 @@ class LineaProducto extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     producto.nombre,
-                    style: decortitleLarge!,
+                    style: Theme.of(context).textTheme.displayMedium,
                   ),
                   const SizedBox(height: 4.0),
-                  construirImportancia(context, producto),
+                  //construirImportancia(context, producto),
                   ],
                 ),
               ],
@@ -43,7 +43,7 @@ class LineaProducto extends StatelessWidget {
               children: <Widget>[
                 Text(
                   producto.cantidad.toString(),
-                  style: titleLarge,
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
                 Checkbox(
                   value: producto.completado,

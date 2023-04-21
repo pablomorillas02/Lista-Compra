@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_final/pantallas/linea_producto.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'pantallas.dart';
 import '../modelo/modelo.dart';
-import 'lista_compra_anadir_producto.dart';
+
 
 class ListaCompraPantallaLlena extends StatelessWidget {
   const ListaCompraPantallaLlena({Key? key, required this.listaCompra})
@@ -16,16 +17,13 @@ class ListaCompraPantallaLlena extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          title: const Text(
+          title: Text(
             'Lista de la compra',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 25.0,
-            ),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           floating: false,
           flexibleSpace: Container(
-            color: Colors.grey,
+            color: Theme.of(context).appBarTheme.backgroundColor,
           ),
           expandedHeight: 100,
         ),
@@ -39,8 +37,14 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                 confirmDismiss: (direction) async {
                   if (direction == DismissDirection.endToStart) {
                     listaCompra.borraProducto(index);
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text('${item.nombre} borrado')));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('${item.nombre} borrado',
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.normal,
+                          )),
+                    ));
                     return true;
                   } else {
                     Navigator.push(
@@ -66,9 +70,15 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(Icons.edit, color: Colors.white),
-                        SizedBox(width: 8.0),
-                        Text('Editar', style: TextStyle(color: Colors.white, fontSize: 16.0)),
+                        const Icon(Icons.edit, color: Colors.white),
+                        const SizedBox(width: 8.0),
+                        Text('Editar',
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.normal,
+                              fontStyle: FontStyle.italic,
+                            )),
                       ],
                     ),
                   ),
@@ -80,9 +90,15 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Icon(Icons.delete_forever, color: Colors.white),
-                        SizedBox(width: 8.0),
-                        Text('Borrar', style: TextStyle(color: Colors.white, fontSize: 16.0)),
+                        Text('Borrar',
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.normal,
+                              fontStyle: FontStyle.italic,
+                            )),
+                        const SizedBox(width: 8.0),
+                        const Icon(Icons.delete_forever, color: Colors.white),
                       ],
                     ),
                   ),
@@ -139,9 +155,15 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(Icons.edit, color: Colors.white),
-                        SizedBox(width: 8.0),
-                        Text('Editar', style: TextStyle(color: Colors.white, fontSize: 16.0)),
+                        const Icon(Icons.edit, color: Colors.white),
+                        const SizedBox(width: 8.0),
+                        Text('Editar',
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.normal,
+                              fontStyle: FontStyle.italic,
+                            )),
                       ],
                     ),
                   ),
@@ -153,9 +175,15 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Icon(Icons.delete_forever, color: Colors.white),
-                        SizedBox(width: 8.0),
-                        Text('Borrar', style: TextStyle(color: Colors.white, fontSize: 16.0)),
+                        Text('Borrar',
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.normal,
+                              fontStyle: FontStyle.italic,
+                            )),
+                        const SizedBox(width: 8.0),
+                        const Icon(Icons.delete_forever, color: Colors.white),
                       ],
                     ),
                   ),
