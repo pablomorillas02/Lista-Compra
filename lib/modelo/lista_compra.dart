@@ -6,9 +6,7 @@ import 'package:proyecto_final/modelo/producto.dart';
 
 class ListaCompra extends ChangeNotifier {
   final _productos = <Producto>[];
-  final _productosCompletados = <Producto>[];
   List<Producto> get productos => List.unmodifiable(_productos);
-  List<Producto> get productosCompletados => List.unmodifiable(_productosCompletados);
   void set productos (List<Producto> lista) => productos = lista;
 
   Future<String> get _localPath async {
@@ -98,12 +96,6 @@ class ListaCompra extends ChangeNotifier {
     notifyListeners();
   }
 
-  void borraProductoCompletado(int indice) {
-    Producto producto = _productosCompletados[indice];
-    _productosCompletados.removeAt(indice);
-    notifyListeners();
-  }
-
   void anadeProducto(Producto item) {
     _productos.add(item);
     escribirLinea(item);
@@ -117,20 +109,10 @@ class ListaCompra extends ChangeNotifier {
   }
 
   void marcaCompletado(int indice, bool completado) {
-    Producto? producto = null;
-
-    if(completado){
-      producto = _productos[indice];
-      _productosCompletados.add(producto.copiaSiNulo(completado: completado));
-      _productos.remove(producto);
-      actualizaLinea(producto, _productosCompletados.last);
-    }else{
-      producto = _productosCompletados[indice];
-      _productos.add(producto.copiaSiNulo(completado: completado));
-      _productosCompletados.remove(producto);
-      actualizaLinea(producto, _productos.last);
-    }
-    
+    final producto = _productos[indice];
+    _productos[indice] = producto.copiaSiNulo(completado: completado);
+    actualizaLinea(producto, _productos[indice]);
+    _productos.sort((a,b) => a.completado == b.completado ? 0 : a.completado ? 1 : -1);
     notifyListeners();
   }
 }

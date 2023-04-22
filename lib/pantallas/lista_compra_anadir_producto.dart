@@ -102,6 +102,7 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
         TextField(
           controller: _controladorNombre,
           style: Theme.of(context).textTheme.displayMedium,
+          textCapitalization: TextCapitalization.words,
           decoration: InputDecoration(
             hintText: 'P.e.: Pan, 1kg de sal, etc.',
             suffixStyle: Theme.of(context).textTheme.displaySmall,
