@@ -40,6 +40,12 @@ class AppTema {
       color: const Color(0xFF212738),
       decoration: TextDecoration.lineThrough,
     ),
+    labelSmall: GoogleFonts.poppins(
+      // DropdownMenu
+      fontSize: 16.0,
+      fontWeight: FontWeight.normal,
+      color: const Color(0xFFEDF2EF),
+    ),
     displaySmall: GoogleFonts.poppins(
       // P.e ...
       fontSize: 12.0,
@@ -86,6 +92,12 @@ class AppTema {
       color: const Color(0xFFEDF2EF),
       decoration: TextDecoration.lineThrough,
     ),
+    labelSmall: GoogleFonts.poppins(
+      // DropdownMenu
+      fontSize: 16.0,
+      fontWeight: FontWeight.normal,
+      color: const Color(0xFFEDF2EF),
+    ),
     displaySmall: GoogleFonts.poppins(
       // P.e ...
       fontSize: 12.0,
@@ -128,6 +140,9 @@ class AppTema {
           side: BorderSide(color: Color(0xFF212738)),
           )
         ),
+        snackBarTheme: SnackBarThemeData(
+          backgroundColor: Color(0xFF212738),
+        )
     );
   }
 
@@ -164,6 +179,9 @@ class AppTema {
           borderRadius: BorderRadius.circular(1.0),
           side: BorderSide(color: Color(0xFFEDF2EF)),
         ),
+      ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: Color(0xFF212738),
       ),
     );
   }

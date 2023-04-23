@@ -42,7 +42,12 @@ class LineaProducto extends StatelessWidget {
               children: <Widget>[
                 Text(
                   producto.cantidad.toString(),
-                  style: Theme.of(context).textTheme.displayMedium,
+                  style: finalTextStyle,
+                ),
+                const SizedBox(width: 4.0,),
+                Text(
+                  producto.unidad,
+                  style: finalTextStyle,
                 ),
                 Checkbox(
                   value: producto.completado,

@@ -22,7 +22,14 @@ class ListaCompraAnadirProducto extends StatefulWidget {
 
 class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
   final _controladorNombre = TextEditingController();
+  final _controladorCantidad = TextEditingController();
+  final _controladorUnidad = TextEditingController();
+
   String _nombre = '';
+  String _cantidad = '';
+  String _unidad = '';
+
+  var _dropdownValue;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +47,8 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
               final producto = Producto(
                 id: widget.productoOriginal?.id ?? const Uuid().v1(),
                 nombre: _controladorNombre.text,
-                cantidad: 0,
+                cantidad: int.parse(_controladorCantidad.text),
+                unidad: _controladorUnidad.text,
               );
 
               if (widget.actualizando) {
@@ -61,7 +69,7 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: <Widget>[
-            construyeCampoNombre(),
+            construyeCampos(),
           ],
         ),
       ),
@@ -75,7 +83,12 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
     final productoOriginal = widget.productoOriginal;
     if (productoOriginal != null) {
       _controladorNombre.text = productoOriginal.nombre;
+      _controladorCantidad.text = productoOriginal.cantidad.toString();
+      _controladorUnidad.text = productoOriginal.unidad;
+
       _nombre = productoOriginal.nombre;
+      _cantidad = productoOriginal.cantidad.toString();
+      _unidad = productoOriginal.unidad;
     }
 
     _controladorNombre.addListener(() {
@@ -83,15 +96,29 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
         _nombre = _controladorNombre.text;
       });
     });
+
+    _controladorCantidad.addListener(() {
+      setState(() {
+        _cantidad = _controladorCantidad.text;
+      });
+    });
+
+    _controladorUnidad.addListener(() {
+      setState(() {
+        _unidad = _controladorUnidad.text;
+      });
+    });
   }
 
   @override
   void dispose() {
     _controladorNombre.dispose();
+    _controladorCantidad.dispose();
+    _controladorUnidad.dispose();
     super.dispose();
   }
 
-  Widget construyeCampoNombre() {
+  Widget construyeCampos() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -106,6 +133,98 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
             hintText: 'P.e.: Pan, 1kg de sal, etc.',
             suffixStyle: Theme.of(context).textTheme.displaySmall,
           ),
+        ),
+        const SizedBox(height: 12.5),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              'Cantidad:',
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Container(
+              width: 150.0, // Establece el ancho deseado del Container
+              height: 50.0, // Establece la altura deseada del Container
+              child: TextField(
+                keyboardType: TextInputType.number,
+                controller: _controladorCantidad,
+                style: Theme.of(context).textTheme.displayMedium,
+                decoration: InputDecoration(
+                  hintText: 'Cantidad',
+                  suffixStyle: Theme.of(context).textTheme.displaySmall,
+                ),
+              ),
+            ),
+            Container(
+              width: 150.0, // Establece el ancho deseado del Container
+              height: 50.0, // Establece la altura deseada del Container
+              child: DropdownButtonFormField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Theme.of(context).appBarTheme.backgroundColor,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+                ),
+                items: [
+                  DropdownMenuItem(
+                    child: Text(
+                      'ud',
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                    value: 'ud',
+                  ),
+                  DropdownMenuItem(
+                    child: Text(
+                      'kg',
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                    value: 'kg',
+                  ),
+                  DropdownMenuItem(
+                    child: Text(
+                      'gr',
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                    value: 'gr',
+                  ),
+                  DropdownMenuItem(
+                    child: Text(
+                      'l',
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                    value: 'l',
+                  ),
+                ],
+                hint: Text(
+                  'Unidad',
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+                value: _dropdownValue,
+                isExpanded: true,
+                dropdownColor: Theme.of(context).appBarTheme.backgroundColor,
+                onChanged: (Object? selectedValue) {
+                  if (selectedValue is String) {
+                    setState(() {
+                      _dropdownValue = selectedValue;
+                      _controladorUnidad.text = selectedValue;
+                    });
+                  }
+                },
+              ),
+            ),
+          ],
         ),
       ],
     );
