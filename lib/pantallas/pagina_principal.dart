@@ -4,6 +4,7 @@ import '../modelo/modelo.dart';
 import 'pantallas.dart';
 
 class PaginaPrincipal extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     final manager = Provider.of<ListaCompra>(context, listen: false);
@@ -90,5 +91,7 @@ class PaginaPrincipal extends StatelessWidget {
     );
 
   }
+
+
 
 }

@@ -74,6 +74,8 @@ class ListaCompra extends ChangeNotifier {
       }
     }
 
+    _productos.sort((a,b) => a.completado == b.completado ? 0 : a.completado ? 1 : -1);
+
     notifyListeners();
   }
 

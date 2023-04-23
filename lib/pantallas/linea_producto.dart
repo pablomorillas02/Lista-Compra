@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:msh_checkbox/msh_checkbox.dart';
 
 import '../modelo/modelo.dart';
 
 class LineaProducto extends StatelessWidget {
     final Producto producto;
     final TextDecoration textDecoration;
-    final Function(bool?)? completar;
+    final Function(bool) completar;
 
     LineaProducto({Key? key, required this.producto, required this.completar}) :
           textDecoration = producto.completado ? TextDecoration.lineThrough :
@@ -43,7 +44,13 @@ class LineaProducto extends StatelessWidget {
                   producto.cantidad.toString(),
                   style: Theme.of(context).textTheme.displayMedium,
                 ),
-                Checkbox(
+                SizedBox(width: 16.0),
+                MSHCheckbox(
+                  size: 30,
+                  colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
+                    checkedColor: Colors.blue,
+                  ),
+                  style: MSHCheckboxStyle.fillScaleCheck,
                   value: producto.completado,
                   onChanged: completar,
                 ),
