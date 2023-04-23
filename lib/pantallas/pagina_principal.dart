@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:proyecto_final/modelo/lista_compra.dart';
-import 'package:proyecto_final/modelo/producto.dart';
-import 'package:proyecto_final/pantallas/pagina_principal_llena.dart';
-import 'package:proyecto_final/pantallas/pagina_principal_vacia.dart';
-
-import 'lista_compra_anadir_producto.dart';
+import '../modelo/modelo.dart';
+import 'pantallas.dart';
 
 class PaginaPrincipal extends StatelessWidget {
   @override
@@ -17,30 +13,46 @@ class PaginaPrincipal extends StatelessWidget {
       backgroundColor: Theme
           .of(context)
           .backgroundColor,
-      body: construirPantallaListaCompra(),
-      floatingActionButton: FloatingActionButton(
-        elevation: 6,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return ListaCompraAnadirProducto(
-                  crearProducto: (producto) {
-                    manager.anadeProducto(producto);
-                    Navigator.pop(context);
-                  },
-                  editarProducto: (producto) {},
-                );
-              },
-            ),
-          );
-        },
-        child: const Icon(
-          Icons.add,
-          color: Colors.white,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      body:
+        construirPantallaListaCompra(),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+              Align(
+                alignment: Alignment.bottomLeft,
+                child:
+                  botonBorrar(),
+                ),
+            SizedBox(width: MediaQuery.of(context).size.width * 0.65,),
+            Align(
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton(
+                    elevation: 6,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ListaCompraAnadirProducto(
+                              crearProducto: (producto) {
+                                manager.anadeProducto(producto);
+                                Navigator.pop(context);
+                              },
+                              editarProducto: (producto) {},
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+          ],
         ),
-      ),
     );
   }
 
@@ -55,4 +67,28 @@ class PaginaPrincipal extends StatelessWidget {
         }
     );
   }
+
+  Widget botonBorrar(){
+    return Consumer<ListaCompra>(
+        builder: (context, manager, child) {
+          if(manager.productos.isNotEmpty && manager.hayProductosCompletados()){
+            return FloatingActionButton(
+              onPressed: () {
+                manager.borraProductosCompletados();
+              },
+              mini: true,
+              backgroundColor: Colors.red,
+              child: const Icon(
+                Icons.delete,
+                color: Colors.white,
+              ),
+            );
+          }else{
+            return SizedBox();
+          }
+        }
+    );
+
+  }
+
 }

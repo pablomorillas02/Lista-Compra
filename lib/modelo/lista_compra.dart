@@ -89,10 +89,31 @@ class ListaCompra extends ChangeNotifier {
     return p;
   }
 
+  bool hayProductosCompletados(){
+
+    for(var i in productos){
+      if(i.completado){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  Future<void> borraProductosCompletados() async{
+
+    for (var i = productos.length - 1; i >= 0; i--) {
+      if (productos[i].completado) {
+        await borrarLinea(productos[i]);
+        _productos.removeAt(i);
+      }
+    }
+    notifyListeners();
+  }
+
   void borraProducto(int indice) {
     Producto producto = _productos[indice];
-    borrarLinea(producto);
     _productos.removeAt(indice);
+    borrarLinea(producto);
     notifyListeners();
   }
 

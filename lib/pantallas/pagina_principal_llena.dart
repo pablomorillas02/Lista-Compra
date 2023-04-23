@@ -43,6 +43,11 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                             fontSize: 12.0,
                             fontWeight: FontWeight.normal,
                           )),
+                      duration: const Duration(seconds: 2),
+                      action: SnackBarAction(
+                        label: 'DESHACER',
+                        onPressed: (){},
+                      ),
                     ));
                     return true;
                   } else {
