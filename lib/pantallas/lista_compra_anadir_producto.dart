@@ -29,7 +29,7 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
   String _cantidad = '';
   String _unidad = '';
 
-  var _dropdownValue;
+  var _dropdownValue = 'ud';
 
   @override
   Widget build(BuildContext context) {
