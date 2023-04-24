@@ -7,7 +7,7 @@ import 'package:proyecto_final/modelo/producto.dart';
 class ListaCompra extends ChangeNotifier {
   final _productos = <Producto>[];
   List<Producto> get productos => List.unmodifiable(_productos);
-  void set productos (List<Producto> lista) => productos = lista;
+  void set productos(List<Producto> lista) => productos = lista;
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
@@ -66,7 +66,7 @@ class ListaCompra extends ChangeNotifier {
   Future<void> obtenerProductoFichero() async {
     final file = await _localFile;
 
-    if(await file.length() != 0 && productos.length == 0) {
+    if (await file.length() != 0 && productos.length == 0) {
       final List<String> lineas = await file.readAsLines();
       for (var element in lineas) {
         Producto p = productoDesdeString(element);
@@ -74,7 +74,11 @@ class ListaCompra extends ChangeNotifier {
       }
     }
 
-    _productos.sort((a,b) => a.completado == b.completado ? 0 : a.completado ? 1 : -1);
+    _productos.sort((a, b) => a.completado == b.completado
+        ? 0
+        : a.completado
+            ? 1
+            : -1);
 
     notifyListeners();
   }
@@ -82,27 +86,29 @@ class ListaCompra extends ChangeNotifier {
   Producto productoDesdeString(String str) {
     final lista = str.split(';');
 
-    Producto p = Producto(id: lista[0], nombre: lista[1], cantidad: int.parse(lista[2]), unidad: lista[3]);
+    Producto p = Producto(
+        id: lista[0],
+        nombre: lista[1],
+        cantidad: int.parse(lista[2]),
+        unidad: lista[3]);
 
-    if(lista[4] == 'true') {
+    if (lista[4] == 'true') {
       p.completado = true;
     }
 
     return p;
   }
 
-  bool hayProductosCompletados(){
-
-    for(var i in productos){
-      if(i.completado){
+  bool hayProductosCompletados() {
+    for (var i in productos) {
+      if (i.completado) {
         return true;
       }
     }
     return false;
   }
 
-  Future<void> borraProductosCompletados() async{
-
+  Future<void> borraProductosCompletados() async {
     for (var i = productos.length - 1; i >= 0; i--) {
       if (productos[i].completado) {
         await borrarLinea(productos[i]);
@@ -135,7 +141,11 @@ class ListaCompra extends ChangeNotifier {
     final producto = _productos[indice];
     _productos[indice] = producto.copiaSiNulo(completado: completado);
     actualizaLinea(producto, _productos[indice]);
-    _productos.sort((a,b) => a.completado == b.completado ? 0 : a.completado ? 1 : -1);
+    _productos.sort((a, b) => a.completado == b.completado
+        ? 0
+        : a.completado
+            ? 1
+            : -1);
     notifyListeners();
   }
 }

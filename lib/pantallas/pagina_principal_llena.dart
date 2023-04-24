@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'pantallas.dart';
 import '../modelo/modelo.dart';
 
-
 class ListaCompraPantallaLlena extends StatelessWidget {
   const ListaCompraPantallaLlena({Key? key, required this.listaCompra})
       : super(key: key);
@@ -46,7 +45,7 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                       duration: const Duration(seconds: 2),
                       action: SnackBarAction(
                         label: 'DESHACER',
-                        onPressed: (){},
+                        onPressed: () {},
                       ),
                     ));
                     return true;
@@ -110,8 +109,8 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                 child: ListTile(
                   title: LineaProducto(
                     producto: item,
-                    completar: (valor){
-                      if(valor != null){
+                    completar: (valor) {
+                      if (valor != null) {
                         listaCompra.marcaCompletado(index, valor);
                       }
                     },

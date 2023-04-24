@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class pantalla_vacia extends StatelessWidget {
   const pantalla_vacia({Key? key}) : super(key: key);
 
@@ -19,23 +20,21 @@ class pantalla_vacia extends StatelessWidget {
         ),
         SliverToBoxAdapter(
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.all(50.0),
-                      child: Text(
-                        'Añade productos pulsando el botón',
-                        style: Theme.of(context).textTheme.displayLarge,
-                        textAlign: TextAlign.center,
-                      ),
-                  )
-                ],
-              ),
-            )
-        ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: Text(
+                  'Añade productos pulsando el botón',
+                  style: Theme.of(context).textTheme.displayLarge,
+                  textAlign: TextAlign.center,
+                ),
+              )
+            ],
+          ),
+        )),
       ],
     );
-
   }
 }

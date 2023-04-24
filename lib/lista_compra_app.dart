@@ -15,9 +15,11 @@ class ListaCompraApp extends StatelessWidget {
       darkTheme: AppTema.oscuro(),
       themeMode: ThemeMode.system,
       home: MultiProvider(
-          providers: [
-            ChangeNotifierProvider(create: (context) => ListaCompra(),),
-          ],
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => ListaCompra(),
+          ),
+        ],
         child: PaginaPrincipal(),
       ),
     );
