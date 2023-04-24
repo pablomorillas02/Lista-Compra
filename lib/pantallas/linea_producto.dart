@@ -15,7 +15,8 @@ class LineaProducto extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-      var titleLarge = Theme.of(context).textTheme.titleLarge;
+      var textStyle = Theme.of(context).textTheme.displayMedium;
+      var finalTextStyle = textStyle?.copyWith(decoration: textDecoration);
 
       return Container(
           height: 60.0,
@@ -31,7 +32,7 @@ class LineaProducto extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     producto.nombre,
-                    style: Theme.of(context).textTheme.displayMedium,
+                    style: finalTextStyle,
                   ),
                   const SizedBox(height: 4.0),
                   ],
@@ -42,7 +43,12 @@ class LineaProducto extends StatelessWidget {
               children: <Widget>[
                 Text(
                   producto.cantidad.toString(),
-                  style: Theme.of(context).textTheme.displayMedium,
+                  style: finalTextStyle,
+                ),
+                const SizedBox(width: 4.0,),
+                Text(
+                  producto.unidad,
+                  style: finalTextStyle,
                 ),
                 SizedBox(width: 16.0),
                 MSHCheckbox(

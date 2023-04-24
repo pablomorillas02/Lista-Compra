@@ -82,9 +82,9 @@ class ListaCompra extends ChangeNotifier {
   Producto productoDesdeString(String str) {
     final lista = str.split(';');
 
-    Producto p = Producto(id: lista[0], nombre: lista[1], cantidad: int.parse(lista[2]));
+    Producto p = Producto(id: lista[0], nombre: lista[1], cantidad: int.parse(lista[2]), unidad: lista[3]);
 
-    if(lista[3] == 'true') {
+    if(lista[4] == 'true') {
       p.completado = true;
     }
 
