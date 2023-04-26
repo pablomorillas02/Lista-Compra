@@ -4,9 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:proyecto_final/modelo/producto.dart';
 
+// RECEPTO (PATRÓN DESHACER)
 class ListaCompra extends ChangeNotifier {
   final _productos = <Producto>[];
-  List<Producto> get productos => List.unmodifiable(_productos);
+  List<Producto> get productos => _productos.toList();
   void set productos(List<Producto> lista) => productos = lista;
 
   Future<String> get _localPath async {
@@ -30,6 +31,20 @@ class ListaCompra extends ChangeNotifier {
 
     // Ponemos la nueva línea
     lineas.add(producto.toString());
+
+    // Escribir el archivo
+    await file.writeAsString(lineas.join('\n'));
+  }
+
+  Future<void> escribirLineaIndex(int index, Producto producto) async {
+    final file = await _localFile;
+    await file.create();
+
+    // Leemos las líneas del archivo
+    final lineas = await file.readAsLines();
+
+    // Ponemos la nueva línea en su lugar correspondiente
+    lineas.insert(index, producto.toString());
 
     // Escribir el archivo
     await file.writeAsString(lineas.join('\n'));
@@ -128,6 +143,12 @@ class ListaCompra extends ChangeNotifier {
   void anadeProducto(Producto item) {
     _productos.add(item);
     escribirLinea(item);
+    notifyListeners();
+  }
+
+  void anadeProductosIndex(int index, Producto item) {
+    _productos.insert(index , item);
+    escribirLineaIndex(index, item);
     notifyListeners();
   }
 

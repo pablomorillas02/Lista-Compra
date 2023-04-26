@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../deshacer/orden_borrar.dart';
+import '../deshacer/undo_manager.dart';
 import 'pantallas.dart';
 import '../modelo/modelo.dart';
 
@@ -34,7 +36,7 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                 direction: DismissDirection.horizontal,
                 confirmDismiss: (direction) async {
                   if (direction == DismissDirection.endToStart) {
-                    listaCompra.borraProducto(index);
+                    OrdenBorrar(listaCompra, index).execute();
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text('${item.nombre} borrado',
                           style: GoogleFonts.poppins(
@@ -45,7 +47,9 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                       duration: const Duration(seconds: 2),
                       action: SnackBarAction(
                         label: 'DESHACER',
-                        onPressed: () {},
+                        onPressed: () {
+                          UndoManager.instance.undo();
+                        },
                       ),
                     ));
                     return true;
