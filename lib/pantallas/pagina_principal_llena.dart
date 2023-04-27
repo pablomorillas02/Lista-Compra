@@ -54,19 +54,7 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                     ));
                     return true;
                   } else {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ListaCompraAnadirProducto(
-                          productoOriginal: item,
-                          editarProducto: (item) {
-                            listaCompra.actualizaProducto(item, index);
-                            Navigator.pop(context);
-                          },
-                          crearProducto: (item) {},
-                        ),
-                      ),
-                    );
+                    anadirProducto(context, item, index);
                   }
                   return false;
                 },
@@ -111,6 +99,13 @@ class ListaCompraPantallaLlena extends StatelessWidget {
                   ),
                 ),
                 child: ListTile(
+                  onTap: () {
+                    bool valor = (item.completado == true) ? false : true;
+                    listaCompra.marcaCompletado(index, valor);
+                  },
+                  onLongPress: () {
+                    anadirProducto(context, item, index);
+                  },
                   title: LineaProducto(
                     producto: item,
                     completar: (valor) {
@@ -126,6 +121,22 @@ class ListaCompraPantallaLlena extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  void anadirProducto(BuildContext context, Producto item, int index) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ListaCompraAnadirProducto(
+          productoOriginal: item,
+          editarProducto: (item) {
+            listaCompra.actualizaProducto(item, index);
+            Navigator.pop(context);
+          },
+          crearProducto: (item) {},
+        ),
+      ),
     );
   }
 }
