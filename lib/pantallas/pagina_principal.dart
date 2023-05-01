@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:proyecto_final/deshacer/OrdenBorrarCompletados.dart';
+import 'package:proyecto_final/deshacer/deshacer.dart';
 import '../modelo/modelo.dart';
 import 'pantallas.dart';
 
@@ -70,18 +72,20 @@ class PaginaPrincipal extends StatelessWidget {
       if (manager.productos.isNotEmpty && manager.hayProductosCompletados()) {
         return FloatingActionButton(
           onPressed: () {
-            manager.borraProductosCompletados();
+            OrdenBorrarCompletados(manager).execute();
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text('Elementos borrados',
+              content: Text('Productos completados borrados',
                   style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontSize: 12.0,
                     fontWeight: FontWeight.normal,
                   )),
-              duration: const Duration(seconds: 2),
+              duration: const Duration(seconds: 6),
               action: SnackBarAction(
                 label: 'DESHACER',
-                onPressed: () {},
+                onPressed: () {
+                  UndoManager.instance.undo();
+                },
               ),
             ));
           },

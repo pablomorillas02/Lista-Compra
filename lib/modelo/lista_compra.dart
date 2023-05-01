@@ -143,7 +143,22 @@ class ListaCompra extends ChangeNotifier {
   void anadeProducto(Producto item) {
     _productos.add(item);
     escribirLinea(item);
+
+
+    _productos.sort((a, b) => a.completado == b.completado
+        ? 0 : a.completado ? 1 : -1);
+
     notifyListeners();
+  }
+
+  Future<void> anadeProductosCompletados(List<Producto> lista) async{
+      for(var i = lista.length - 1; i >= 0; i--){
+        if(lista[i].completado){
+          await escribirLinea(lista[i]);
+          _productos.add(lista[i]);
+        }
+      }
+      notifyListeners();
   }
 
   void anadeProductosIndex(int index, Producto item) {

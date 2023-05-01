@@ -5,25 +5,24 @@ import 'orden.dart';
 class OrdenBorrarCompletados implements Orden {
   late ListaCompra receptor;
 
-  Producto? estadoAnterior;
-  int index;
+  List<Producto>? estadoAnterior;
 
-  OrdenBorrarCompletados(this.receptor, this.index);
+  OrdenBorrarCompletados(this.receptor);
 
   @override
   void execute() {
-    estadoAnterior = receptor.productos[index];
-    receptor.borraProducto(index);
+    estadoAnterior = receptor.productos;
+    receptor.borraProductosCompletados();
     UndoManager.instance.add(orden: this);
   }
 
   @override
   void undo() {
-    receptor.anadeProductosIndex(index, estadoAnterior!);
+    receptor.anadeProductosCompletados(estadoAnterior!);
   }
 
   @override
   void redo() {
-    receptor.borraProducto(index);
+    receptor.borraProductosCompletados();
   }
 }

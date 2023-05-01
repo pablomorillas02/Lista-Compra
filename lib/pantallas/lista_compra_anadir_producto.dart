@@ -56,6 +56,7 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
               } else {
                 widget.crearProducto(producto);
               }
+
             },
           ),
         ],
@@ -202,10 +203,10 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
                   ),
                   DropdownMenuItem(
                     child: Text(
-                      'l',
+                      'L',
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
-                    value: 'l',
+                    value: 'L',
                   ),
                 ],
                 hint: Text(
