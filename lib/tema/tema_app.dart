@@ -23,7 +23,7 @@ class AppTema {
       color: const Color(0xFF212738),
     ),
     displayLarge: GoogleFonts.poppins(
-      fontSize: 28.0,
+      fontSize: 24.0,
       fontWeight: FontWeight.normal,
       color: const Color(0xFF212738),
     ),
