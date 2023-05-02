@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../deshacer/undo_manager.dart';
+
 class pantalla_vacia extends StatelessWidget {
   const pantalla_vacia({Key? key}) : super(key: key);
 
@@ -8,10 +10,23 @@ class pantalla_vacia extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          title: Text(
-            'Lista de la compra',
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
+          title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Lista de la compra',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                SizedBox(width: 10.0),
+                IconButton(
+                  icon: (UndoManager.instance.isEmpty() == true)
+                      ? Icon(Icons.block)
+                      : Icon(Icons.undo),
+                  onPressed: () {
+                    UndoManager.instance.undo();
+                  },
+                ),
+              ]),
           floating: false,
           flexibleSpace: Container(
             color: Theme.of(context).appBarTheme.backgroundColor,

@@ -30,6 +30,10 @@ class UndoManager {
     }
   }
 
+  bool isEmpty() {
+    return _undoPila.isEmpty;
+  }
+
   @override
   String toString() {
     return 'Commands to undo: $_undoPila\nCommands to redo: $_redoPila';

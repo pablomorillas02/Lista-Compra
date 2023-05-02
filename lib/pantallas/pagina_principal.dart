@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:proyecto_final/deshacer/OrdenBorrarCompletados.dart';
+import 'package:proyecto_final/deshacer/orden_borrar_completados.dart';
 import 'package:proyecto_final/deshacer/deshacer.dart';
 import '../modelo/modelo.dart';
 import 'pantallas.dart';
