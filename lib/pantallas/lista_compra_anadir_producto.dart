@@ -39,25 +39,23 @@ class _ListaCompraAnadirProductoState extends State<ListaCompraAnadirProducto> {
         iconTheme: Theme.of(context).iconTheme,
         actions: [
           IconButton(
-            icon: Icon(
-              Icons.check,
-              color: Theme.of(context).iconTheme.color,
-            ),
-            onPressed: () {
-              final producto = Producto(
-                id: widget.productoOriginal?.id ?? const Uuid().v1(),
-                nombre: _controladorNombre.text,
-                cantidad: int.parse(_controladorCantidad.text),
-                unidad: _controladorUnidad.text,
-              );
+            icon: Icon(Icons.check),
+            onPressed: (_nombre == '')
+                ? null
+                : () {
+                    final producto = Producto(
+                      id: widget.productoOriginal?.id ?? const Uuid().v1(),
+                      nombre: _controladorNombre.text,
+                      cantidad: int.parse(_controladorCantidad.text),
+                      unidad: _controladorUnidad.text,
+                    );
 
-              if (widget.actualizando) {
-                widget.editarProducto(producto);
-              } else {
-                widget.crearProducto(producto);
-              }
-
-            },
+                    if (widget.actualizando) {
+                      widget.editarProducto(producto);
+                    } else {
+                      widget.crearProducto(producto);
+                    }
+                  },
           ),
         ],
         elevation: 0.0,

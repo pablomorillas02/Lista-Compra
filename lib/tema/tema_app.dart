@@ -120,6 +120,7 @@ class AppTema {
         iconTheme: const IconThemeData(
           color: Color(0xFFEDF2EF),
         ),
+        disabledColor: Color(0xAA5A5A5A),
         inputDecorationTheme: const InputDecorationTheme(
             hintStyle: TextStyle(
               fontSize: 12.0,
@@ -157,6 +158,7 @@ class AppTema {
       iconTheme: const IconThemeData(
         color: Color(0xFFEDF2EF),
       ),
+      disabledColor: Color(0xAA5A5A5A),
       inputDecorationTheme: const InputDecorationTheme(
           hintStyle: TextStyle(
             fontSize: 12.0,

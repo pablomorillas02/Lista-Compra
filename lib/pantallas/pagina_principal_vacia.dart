@@ -10,26 +10,30 @@ class pantalla_vacia extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'Lista de la compra',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                SizedBox(width: 10.0),
-                IconButton(
-                  icon: (UndoManager.instance.isEmpty() == true)
-                      ? Icon(Icons.block)
-                      : Icon(Icons.undo),
-                  onPressed: () {
-                    UndoManager.instance.undo();
-                  },
-                ),
-              ]),
+          title: Text(
+            'Lista de la compra',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
           floating: false,
           flexibleSpace: Container(
             color: Theme.of(context).appBarTheme.backgroundColor,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(Icons.undo),
+                        onPressed: (UndoManager.instance.isEmpty())
+                            ? null
+                            : () {
+                                UndoManager.instance.undo();
+                              },
+                      ),
+                    ],
+                  ),
+                ]),
           ),
           expandedHeight: 100,
         ),
