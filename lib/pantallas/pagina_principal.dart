@@ -80,7 +80,7 @@ class PaginaPrincipal extends StatelessWidget {
                     fontSize: 12.0,
                     fontWeight: FontWeight.normal,
                   )),
-              duration: const Duration(seconds: 6),
+              duration: const Duration(seconds: 3),
               action: SnackBarAction(
                 label: 'DESHACER',
                 onPressed: () {
