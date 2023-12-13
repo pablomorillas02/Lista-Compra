@@ -1,4 +1,4 @@
-﻿# ![flutter](https://icons8.com/icon/7I3BjCqe9rjG/flutter)Lista de la compra
+﻿# Lista de la compra
 
 Este proyecto ha sido entregado como práctica final de la asignatura *desarrollo de software para dispositivos móviles*
 
@@ -11,22 +11,10 @@ Esta aplicación es una sencilla lista de la compra, con la que podremos:
 - Borrar los productos que ya hayan sido marcados como comprados.
 - Deshacer cambios.
 
-```xml
-<table>
-  <tr>
-    <td>Página inicial</td>
-     <td>Añadir/borrar producto</td>
-     <td>Deslizar para editar</td>
-     <td>Deslizar para borrar</td>
-  </tr>
-  <tr>
-    <td><img src="img/inicio.jpg" width=270 height=480></td>
-    <td><img src="img/add.jpg" width=270 height=480></td>
-    <td><img src="img/principal_edit.jpg" width=270 height=480></td>
-    <td><img src="img/principal_delete.jpg" width=270 height=480></td>
-  </tr>
- </table>
-```
+|                 |                   |                     |                     |
+| --------------- | ----------------- | ------------------- | ------------------- |
+| Página inicial  | Añadir/borrar producto | Deslizar para editar | Deslizar para borrar |
+| ![Inicio](img/inicio.jpg) | ![Añadir](img/add.jpg) | ![Editar](img/principal_edit.jpg) | ![Borrar](img/principal_delete.jpg) |
 
 Vamos a indagar un poco en el proceso de desarrollo de la aplicación.
 
